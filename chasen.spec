@@ -69,6 +69,9 @@ rm -fr $RPM_BUILD_ROOT%{_datadir}/%{name}/doc
 %clean
 rm -rf $RPM_BUILD_ROOT
 
+%post	-p /sbin/ldconfig
+%postun	-p /sbin/ldconfig
+
 %files
 %defattr(644,root,root,755)
 %doc AUTHORS COPYING ChangeLog NEWS README manual.pdf
