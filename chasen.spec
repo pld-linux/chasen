@@ -1,9 +1,5 @@
-# TODO: it should be reviewed by ac/am specialist and generally
-#		by more experienced PLD developers.
-# 		I stole spec from:
-# http://sacral.c.u-tokyo.ac.jp/~hasimoto/Pineapple/0.2/testing/SPECS/chasen.spec
 Summary:	Japanese Morphological Analysis System, ChaSen
-Summary(pl):	System analizy morfologii japoñskiej, ChaSen
+Summary(pl):	System analizy morfologii japoñskiej ChaSen
 Name:		chasen
 Version:	2.2.8
 Release:	1
@@ -12,30 +8,36 @@ License:	freeware
 Group:		Applications/Text
 Source0:	http://chasen.aist-nara.ac.jp/stable/chasen/%{name}-%{version}.tar.gz
 # Source0-md5:	492fce8f554d7d2ff720a8b5453ac624
+Patch0:		%{name}-nolibs.patch
 URL:		http://chasen.aist-nara.ac.jp/
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 Japanese Morphological Analysis System.
 
 %description -l pl
-System analizy morfologii japoñskiej, ChaSen
+System analizy morfologii japoñskiej ChaSen.
 
 %package devel
-Summary:	Libraries and header files for ChaSen developers.
-Summary(pl):	Biblioteki i pliki nag³ówkowe dla deweloperów ChaSen.
-Group:	Development/Libraries
-
-%package static
-Summary:	Static ChaSen library.
-Summary(pl):	Biblioteka statyczna ChaSen.
-Group:	Development/Libraries
+Summary:	Header files for ChaSen developers
+Summary(pl):	Pliki nag³ówkowe dla programistów u¿ywaj±cych systemu ChaSen
+Group:		Development/Libraries
+Requires:	%{name} = %{epoch}:%{version}
 
 %description devel
-Libraries and header files for ChaSen developers.
+Header files for ChaSen developers.
 
 %description devel -l pl
-Biblioteki i pliki nag³ówkowe dla deweloperów ChaSen.
+Pliki nag³ówkowe dla deweloperów u¿ywaj±cych systemu ChaSen.
+
+%package static
+Summary:	Static ChaSen library
+Summary(pl):	Biblioteka statyczna ChaSen
+Group:		Development/Libraries
+Requires:	%{name}-devel = %{epoch}:%{version}
 
 %description static
 Static ChaSen library.
@@ -45,13 +47,14 @@ Biblioteka statyczna ChaSen.
 
 %prep
 %setup -q
+%patch -p1
 
 %build
-%{__aclocal}
-%{__autoheader}
 %{__libtoolize}
-%{__automake}
+%{__aclocal}
 %{__autoconf}
+%{__autoheader}
+%{__automake}
 %configure
 %{__make}
 
@@ -68,19 +71,19 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc AUTHORS COPYING ChangeLog NEWS* README* manual*
+%doc AUTHORS COPYING ChangeLog NEWS README manual.pdf
+%lang(ja) %doc NEWS-ja README-ja manual-j.pdf
 %attr(755,root,root) %{_bindir}/%{name}
-%dir %{_datadir}/%{name}
-%{_datadir}/%{name}/*
-%attr(755,root,root) %{_libdir}/*.so*
-%dir %{_libdir}/%{name}
-%attr(755,root,root) %{_libdir}/%{name}/*
+%attr(755,root,root) %{_libdir}/lib*.so.*.*.*
+%attr(755,root,root) %{_libdir}/%{name}
+%{_datadir}/%{name}
 
 %files devel
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_bindir}/%{name}-config
-%{_includedir}/%{name}.h
-%attr(755,root,root) %{_libdir}/libchasen.la
+%attr(755,root,root) %{_bindir}/chasen-config
+%attr(755,root,root) %{_libdir}/lib*.so
+%{_libdir}/libchasen.la
+%{_includedir}/chasen.h
 
 %files static
 %defattr(644,root,root,755)
