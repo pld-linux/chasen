@@ -1,18 +1,19 @@
 Summary:	Japanese Morphological Analysis System, ChaSen
 Summary(pl):	System analizy morfologii japoñskiej ChaSen
 Name:		chasen
-Version:	2.2.8
-Release:	2
+Version:	2.3.3
+Release:	1
 Epoch:		0
 License:	freeware
 Group:		Applications/Text
 Source0:	http://chasen.aist-nara.ac.jp/stable/chasen/%{name}-%{version}.tar.gz
-# Source0-md5:	492fce8f554d7d2ff720a8b5453ac624
-Patch0:		%{name}-nolibs.patch
+# Source0-md5:	629e90d9490bac95606c38c2d344cc5f
 URL:		http://chasen.aist-nara.ac.jp/
-BuildRequires:	autoconf
+BuildRequires:	autoconf >= 2.13
 BuildRequires:	automake
-BuildRequires:	libtool
+BuildRequires:	darts
+BuildRequires:	libstdc++-devel
+BuildRequires:	libtool >= 2:1.4d
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -47,7 +48,6 @@ Biblioteka statyczna ChaSen.
 
 %prep
 %setup -q
-%patch -p1
 
 %build
 %{__libtoolize}
@@ -60,11 +60,9 @@ Biblioteka statyczna ChaSen.
 
 %install
 rm -rf $RPM_BUILD_ROOT
+
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
-
-mv $RPM_BUILD_ROOT%{_datadir}/%{name}/doc/* .
-rm -fr $RPM_BUILD_ROOT%{_datadir}/%{name}/doc
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -74,12 +72,11 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc AUTHORS COPYING ChangeLog NEWS README manual.pdf
-%lang(ja) %doc NEWS-ja README-ja manual-j.pdf
+%doc AUTHORS COPYING ChangeLog NEWS README
+%lang(ja) %doc doc/manual-j.pdf
 %attr(755,root,root) %{_bindir}/%{name}
 %attr(755,root,root) %{_libdir}/lib*.so.*.*.*
 %attr(755,root,root) %{_libdir}/%{name}
-%{_datadir}/%{name}
 
 %files devel
 %defattr(644,root,root,755)
