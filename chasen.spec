@@ -4,7 +4,7 @@ Name:		chasen
 Version:	2.3.3
 Release:	1
 Epoch:		0
-License:	freeware
+License:	Freeware
 Group:		Applications/Text
 Source0:	http://chasen.aist-nara.ac.jp/stable/chasen/%{name}-%{version}.tar.gz
 # Source0-md5:	629e90d9490bac95606c38c2d344cc5f
