@@ -1,0 +1,13 @@
+--- chasen-2.2.8/configure.in.orig	Mon Jul 23 13:09:45 2001
++++ chasen-2.2.8/configure.in	Mon Sep  1 13:51:09 2003
+@@ -39,8 +39,8 @@
+ AC_FUNC_MMAP
+ AC_TYPE_SIGNAL
+ AC_CHECK_FUNCS(htonl)
+-AC_CHECK_LIB(nsl, gethostname)
+-AC_CHECK_LIB(socket, socket)
++AC_SEARCH_LIBS(gethostname, nsl)
++AC_SEARCH_LIBS(socket, socket)
+ 
+ case "$host_os" in
+     mingw* | os2*)
