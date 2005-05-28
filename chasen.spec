@@ -12,6 +12,7 @@ URL:		http://chasen.aist-nara.ac.jp/
 BuildRequires:	autoconf >= 2.13
 BuildRequires:	automake
 BuildRequires:	darts
+BuildRequires:	iconv
 BuildRequires:	libstdc++-devel
 BuildRequires:	libtool >= 2:1.4d
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
