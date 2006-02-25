@@ -1,0 +1,11 @@
+--- chasen-2.3.3/lib/dartsdic.cpp.orig	2003-07-30 18:06:57.000000000 +0200
++++ chasen-2.3.3/lib/dartsdic.cpp	2006-02-25 21:01:27.326524000 +0100
+@@ -177,7 +177,7 @@
+ 	    lex_indices.push_back(i->second);
+ 	}
+ 	lens[size] = key.size();
+-	(const char*)keys[size] = key.data();
++	keys[size] = const_cast<char*>(key.data());
+ 	vals[size] = redump_lex(lens[size], lex_indices, tmpfile, lexfile);
+ 	if (vals[size] < 0) {
+ 	    std::cerr << "Unexpected error at " << key << std::endl;
