@@ -8,6 +8,7 @@ License:	Freeware
 Group:		Applications/Text
 Source0:	http://chasen.aist-nara.ac.jp/stable/chasen/%{name}-%{version}.tar.gz
 # Source0-md5:	629e90d9490bac95606c38c2d344cc5f
+Patch0:		%{name}-gcc4.patch
 URL:		http://chasen.aist-nara.ac.jp/
 BuildRequires:	autoconf >= 2.13
 BuildRequires:	automake
@@ -49,6 +50,7 @@ Biblioteka statyczna ChaSen.
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
 %{__libtoolize}
