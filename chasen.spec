@@ -1,5 +1,5 @@
 Summary:	Japanese Morphological Analysis System, ChaSen
-Summary(pl.UTF-8):   System analizy morfologii japońskiej ChaSen
+Summary(pl.UTF-8):	System analizy morfologii japońskiej ChaSen
 Name:		chasen
 Version:	2.3.3
 Release:	1
@@ -26,7 +26,7 @@ System analizy morfologii japońskiej ChaSen.
 
 %package devel
 Summary:	Header files for ChaSen developers
-Summary(pl.UTF-8):   Pliki nagłówkowe dla programistów używających systemu ChaSen
+Summary(pl.UTF-8):	Pliki nagłówkowe dla programistów używających systemu ChaSen
 Group:		Development/Libraries
 Requires:	%{name} = %{epoch}:%{version}
 
@@ -38,7 +38,7 @@ Pliki nagłówkowe dla deweloperów używających systemu ChaSen.
 
 %package static
 Summary:	Static ChaSen library
-Summary(pl.UTF-8):   Biblioteka statyczna ChaSen
+Summary(pl.UTF-8):	Biblioteka statyczna ChaSen
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{epoch}:%{version}
 
