@@ -2,7 +2,7 @@ Summary:	Japanese Morphological Analysis System, ChaSen
 Summary(pl.UTF-8):	System analizy morfologii japońskiej ChaSen
 Name:		chasen
 Version:	2.3.3
-Release:	1
+Release:	2
 Epoch:		0
 License:	Freeware
 Group:		Applications/Text
